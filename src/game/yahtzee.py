@@ -9,6 +9,7 @@ class Game:
 
 class Table:
     def __init__(self):
+        # Tabelul care este format dintr-un tuplu=(scor, daca a fost introdus ceva in el).
         self.table = {
             "N1": (0, False),
             "N2": (0, False),
@@ -26,6 +27,7 @@ class Table:
             "TOTAL": (0, False)
         }
 
+        # Function map-ul care ne ajuta sa calculam mai usor regula introdusa.
         self.table_map = {
             "N1": self.n1,
             "N2": self.n2,
@@ -104,6 +106,9 @@ class Table:
     def joker(self, hand: list):
         self.table['TOTAL'] = (self.table['TOTAL'][0] + sum(hand), True)
         return sum(hand)
+
+    # Multe metode folosesc un vector de frecventa pentru a calcula mai usor rezultatul regulilor, totodata
+    # modificand si scorul total.
 
     def tripa(self, hand: list):
         frequency = [0, 0, 0, 0, 0, 0, 0]
@@ -201,6 +206,9 @@ class Table:
         return self.table
 
     def get_formated(self):
+        """
+        Afiseaza tabelul formatat.
+        """
         return f"N1 -----> {'' if self.table['N1'][1] == False else self.table['N1'][0]}\n" + \
                f"N2 -----> {'' if self.table['N2'][1] == False else self.table['N2'][0]}\n" + \
                f"N3 -----> {'' if self.table['N3'][1] == False else self.table['N3'][0]}\n" + \
